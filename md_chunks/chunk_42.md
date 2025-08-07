@@ -1,0 +1,7 @@
+## 43. Incidence of Expenses in Connection with the Reservation of Accommodation in Railwaysl Aircraft
+
+- (a) All expenditure, including the cost of telegrams sent through the P8T channels; incurred in connection with the reservation of accommodation in aircraft for officers and others eligible for cash TA\_ when travelling on duty will be borne by the individuals concerned. The officer arranging the accommodation by air and incurring the expenditure on the above account will inform the CDA concerned, as and when such charges are incurred to effect recovery of the charges from the individual concerned.
+- (b) Reservation charges levied by Railway in respect of all classes of rail accommodation will be reimbursed to the individual treating the same as part of the fare. The telegram expenses charged by the Railways in connection with the reservation of accommodation in trains for onward andlor return journeys by Government servants travelling on duty shall also be reimbursed to them:
+- (c) Civilians paid from Defence Services Estimateslservice personnel who either g0 themselves or are deputed for collecting airlraillbuslship tickets; passports, visas etc. from railway stations booking offices; passport offices; embassies etc. will be
+
+entitled to conveyance charges in connections with official journeys within India as well as abroad. The facility will be allowed only by public transport and will also be subject to control by the Controlling Officer.

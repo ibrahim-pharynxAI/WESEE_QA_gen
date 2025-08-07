@@ -1,0 +1,3 @@
+## 163. Conveyance in journeys for Mass Miniature Radiography of Gorkha Recruits enrolled at Ghoom
+
+Gorkha recruits enrolled at Ghoom will be eligible for free conveyance as soldierslsailorslairmen from Ghoom to Kunraghat for carrying out Mass Miniature Radiography at Military Hospital; Kunraghat:  Such of the recruits as are rejected at Kunraghat after Mass Miniature Radiography will be eligible for free conveyance as soldierslsailorsl airmen from Kunraghat to Ghoom and after their discharge at Ghoom to their homes in Nepal under Rule 193(e) if had actually proceeded from their homes to Ghoom. they

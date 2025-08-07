@@ -1,0 +1,10 @@
+## 211. Conveyance to Ex-Service Personnel when proceeding to a Hospital in connection with the supply etc of artificial limbs and appliances
+
+- (i)   Discharged Service Personnel are entitled, on the authority of the OC Service Hospital nearest to their homes, conveyance on
+
+warrant by rail or road, from their homes to the Service Hospital atwhich the first report in person and then to the Artificial Limb Centre; Pune, or other station to which may subsequently be sent for treatment and also for the return journey in connection with supply; repair and renewal of artificial limbs and surgical appliances and further surgical treatment. they
+
+- When attendants are considered necessary will be provided with warrants for outward and return journeys. they
+- (iii) The class and type of accommodation Iying and sitting and whether it should be by Passenger or Mail train will be decided at the direction of the OC, Service Hospital to which the Depot /CentrelUnit is attached for medical cover IOC Service Hospital nearest to their home; PMOISMO of shipsl Establishments (in the case of sailors) , OC Armed Forced Artificial Limb Centre Pune. While determining the class of accommodation; the conditions prevailing in the particular train by which the amputee is to travel will be taken into account. These powers will not be delegated and will always be exercised before the journey is undertaken. Ex-post-facto authorisation will not be acceptable.
+- (iv) For road journey where warrants cannot be issued; discharged service personnel may be granted an allowance at the prescribed rate. Discharged Gorkhas who are unable to march will however be granted road mileage at the prescribed rate for journeys within Nepal.
+- v) Should it be necessary for a discharged Commissioned Officer to proceed from his home to the Artificial Limb Centre. Pune; or any other Station in India in connection with the repair or removal of an artificial limb or appliance; his actual travelling expenses may be admitted provided that the OC Service Hospital nearest to his home certifies that the journey to such a station was essential for the proper execution of the work.

@@ -1,0 +1,5 @@
+## 153. Conveyance for journeys to obtain Medical Certificate
+
+Ifaperson is compelled to travel to another station to obtain a medical certificate in support of his application for leave or for further opinion as t0 the necessity for the leave recommended in the medical certificate; for an original grant of leave he will be granted free conveyance on warrant except in thecase of a civilian who will draw fare by rail in the entitled class and a Road Mileage Allowance at the rates laid down in Rule 61. If an individual undertakes more than one journey he may be granted similar conveyance for the second and subsequent journey also; provided that he produces a certificate from the Medical Officer concerned or the Medical Board that he was required to undertake such ajourney or journeys at the behest of that authority: Thejourney should not be undertaken without the prior permission of the Controlling Officer if such permission can be obtained without risk to the person requiring leave.
+
+No allowance will be admissible for the period of halt in such cases.

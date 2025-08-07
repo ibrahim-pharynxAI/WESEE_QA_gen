@@ -1,0 +1,5 @@
+## 164. Conveyance to families Accompanying Soldiersl Sailorsl Airmen Granted Sick Leave
+
+- (i) The family of a soldierIsailorlairman/ NCs(E) on the authorised married establishment temporarily serving at a station outside the State in which he was recruited is entitled to conveyance when accompanying the soldierl sailorl airmanl NCs(E) proceeding to his home on leave granted on the recommendation of a medical board, provided that the family was originally conveyed at the public expense to the station at which the soldierlsailorl airman is serving:
+- Conveyance for families under this rule is restricted to conveyance by railway and is admissible only on the condition that further conveyance will not be granted to the family until the Unit to which the soldierl sailorlairman belongs has returned to the State in which he was recruited and until the family has rejoined the Unit at their own expense.
+- (iii) The family of a soldierIsailorlairman referred to in the preceding clause who is granted leave to his home on the recommendation of a medical board after anti-rabic treatment is entitled to conveyance to the extent specified in Rule 156.

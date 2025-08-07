@@ -72,19 +72,44 @@ class QuestionGenerator:
             self.global_questions.add(q_text)
         return unique
 
-    def generate_questions(self, content: str, section_number: int, max_attempts: int = 2) -> List[dict]:
+    def generate_questions(self, content: str, section_number: int, max_attempts: int = 3) -> List[dict]:
         """Use only the /v1/chat/completions endpoint to generate questions."""
         base_prompt = f"""
-        You are an expert question generator. From the content of section {section_number}, generate as many unique questions as possible, covering every aspect of the content.
-        Aim for around 30-50 questions, but ensure they are diverse and cover different angles.
-        Requirements:
-        - No overlap with other sections.
-        - Diverse phrasing.
-        - JSON format only.
-        - No extra text or tags.
-        Example:
-        [{{"question": "Define X"}}, {{"question": "What are the implications of Y?"}}]
-        Content: {content}
+        You are a specialized question generation expert. Your task is to analyze section {section_number} and create comprehensive questions that thoroughly cover all content aspects.
+
+## Core Requirements:
+- STRICTLY Generate around 50-60 unique questions or more if possible
+- Each question must address different content elements
+- Ensure zero overlap with questions from other sections
+- Use varied question structures and cognitive levels
+
+## Question Diversity Guidelines:
+- **Factual recall**: "What is...", "Define...", "List..."
+- **Conceptual understanding**: "Explain how...", "Why does..."
+- **Application**: "How would you apply...", "In what scenarios..."
+- **Analysis**: "Compare...", "What are the implications of..."
+- **Synthesis**: "How do X and Y relate...", "What connections exist..."
+- **Evaluation**: "What are the advantages/disadvantages...", "Assess..."
+
+## JSON Output Requirements:
+- Return ONLY valid JSON array
+- No markdown code blocks, explanations, or additional text
+- Each object must contain exactly one "question" key
+- Questions must end with appropriate punctuation
+- Use double quotes for all strings
+- Ensure proper JSON escaping for quotes within questions
+
+## Format (STRICT):
+[{{"question": "First question here?"}}, {{"question": "Second question here?"}}, {{"question": "Third question here?"}}]
+
+## Content Analysis Instructions:
+1. Identify all key concepts, terms, and ideas
+2. Note relationships between different elements
+3. Consider practical applications and real-world examples
+4. Include both surface-level and deeper analytical questions
+5. Address cause-and-effect relationships where applicable
+
+Content: {content}
         """.strip()
 
         headers = {"Content-Type": "application/json"}
@@ -118,18 +143,34 @@ class QuestionGenerator:
         logger.error(f"Chat completions failed for section {section_number}")
         return []
 
-    def split_md_into_chunks(self, content: str) -> List[str]:
+    def split_md_into_chunks(self, content: str, output_dir: str = "md_chunks") -> List[str]:
         sections = []
         current_section = []
-        for line in content.split('\n'):
-            if line.startswith('#') and current_section:
-                sections.append('\n'.join(current_section))
-                current_section = []
-            current_section.append(line)
-        if current_section:
-            sections.append('\n'.join(current_section))
-        logger.info(f"Split content into {len(sections)} sections")
+
+        os.makedirs(output_dir, exist_ok=True)
+
+        lines = content.split('\n')
+        for i, line in enumerate(lines):
+            if line.strip().startswith('#'):
+                if current_section and any(l.strip() for l in current_section[1:]):
+                    chunk = '\n'.join(current_section)
+                    sections.append(chunk)
+                    # Save chunk to file
+                    with open(os.path.join(output_dir, f"chunk_{len(sections)}.md"), 'w', encoding='utf-8') as f:
+                        f.write(chunk)
+                current_section = [line]
+            else:
+                current_section.append(line)
+
+        if current_section and any(l.strip() for l in current_section[1:]):
+            chunk = '\n'.join(current_section)
+            sections.append(chunk)
+            with open(os.path.join(output_dir, f"chunk_{len(sections)}.md"), 'w', encoding='utf-8') as f:
+                f.write(chunk)
+
+        logger.info(f"Split content into {len(sections)} sections and saved to '{output_dir}'")
         return sections
+
 
     def process_md(self, file_path: str, output_file: str):
         logger.info(f"Processing {file_path}")
@@ -140,7 +181,7 @@ class QuestionGenerator:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        sections = self.split_md_into_chunks(content)
+        sections = self.split_md_into_chunks(content, output_dir="md_chunks")
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
         all_data = []

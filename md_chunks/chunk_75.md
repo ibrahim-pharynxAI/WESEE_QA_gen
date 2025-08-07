@@ -1,0 +1,3 @@
+## 79. Conveyance of baggage when free Government Transport is provided to an individual
+
+If free transport by road is provided to an individual on transfer; and if any baggage exceeding the free allowance which would have been permissible by normal mode of travel is carried free in that transport; a corresponding reduction on account of extra baggage shall be made from the maximum quantity allowed under these Regulations. In case the weight, actually carried by the free transport exceeds the maximum quantity allowed under these Regulations, the recovery for the carriage of the balance; less the free allowance; may be made from the individual at the which he would have been reimbursed had he taken the same (excess quantity) by the normal mode of transport.

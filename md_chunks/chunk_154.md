@@ -1,0 +1,5 @@
+## 145. Conveyance for individuals residing in Nepal who draw their pensions or family allotments annually
+
+Individuals residing in Nepal who have to undertake journeys for receiving payment of their pensions or family allotments will be granted road mileage at prescribed rates per day to and from the nearest Pension Paying Centres. The concession will also be admissible to the nominated heir of a pensioner when coming to draw the arrears of lifetime pension of a pensioner who dies in Nepal and also to the representative of a Gorkha pensioner who draws pension on behalf of a pensioner. In cases, however where an individual represents at one and the same time more than one pensioner the pension paying authority will ensure that the representative draws only one road mileage in respect of each journey irrespective of the number of pensioners whose pension is drawn by him:
+
+The above concession will be admissible once in a year and will be granted, provided the journey involved extends over a period of more than two days each way:

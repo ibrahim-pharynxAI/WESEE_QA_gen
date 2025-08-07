@@ -1,0 +1,10 @@
+## 5 Declaration of Home Town:
+
+- (i) Government servant is required to make the declaration of home town before the expiry of six months from the date of entry into service.
+- (ii) A declaration of home town once made shall ordinarily be treated as final; but in exceptional circumstances the Head of the Department or if the Government servant himself is the Head of the Department; the Ministry of Defence may authorise a change in such declaration provided that such a change shall not be made more than once during the service of the Government servant. In the case of persons on deputation; such requests will be effected only with the approval of the Heads of Departments to which the Government servants concerned permanently belong.
+- (iii) The home town declaration made after the prescribed time limit may be accepted by the Controlling Authority against one change for changing the declaration of home town and this will
+
+- be treated as the final declaration of home town and no further change of home town will be allowed in such cases.
+- Where an entry relating to home town of the Government servant already existed in his service book or in any other official record, he need not make a fresh declaration; for the purpose of the LTC unless achange therein is desired by him.
+- In the case of non-gazetted staff, the declaration will be kept in; the service book of other appropriate service record of the Government servant. In the case of Gazetted officers the Controlling Officers shall forward the declaration after due verification to the Audit Officer concerned who shall keep them with the officer's History of Service. An officer who is his own Controlling Officer for the purposes of travelling allowance should make the initial or any subsequent declaration of his home town to his next superior administrative authority for acceptance. The Controlling Officer may; for his own convenience; maintain a register of such home town in respect of the staff under his control.
+- (vi) Where the husband and wife are in Central Government service; they can declare separate Home towns independently:

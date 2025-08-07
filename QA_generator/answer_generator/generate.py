@@ -294,10 +294,10 @@ def main_sequential(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5):
         logger.error("Failed to save final results!")
 
 
-def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_workers: int = 3):
-    """Parallel processing version for faster execution."""
+def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_workers: int = 3, batch_size: int = 4):
+    """Parallel processing version with batch processing for better resource management."""
     
-    logger.info(f"Starting answer generation process (Parallel with {max_workers} workers)")
+    logger.info(f"Starting answer generation process (Parallel with {max_workers} workers, batch size {batch_size})")
     logger.info(f"Input: {INPUT_FILE}")
     logger.info(f"Output: {OUTPUT_FILE}")
     
@@ -334,45 +334,58 @@ def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_wo
         logger.info("All questions already answered!")
         return
 
-    # Process questions in parallel
+    # Process questions in batches
     counter = 0
     failed_count = 0
+    total_processed = len(unanswered_questions)
     
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        # Submit all tasks
-        future_to_question = {
-            executor.submit(process_single_question, question_data): question_data 
-            for question_data in unanswered_questions
-        }
-        
-        # Process completed tasks with progress bar
-        with tqdm(total=len(unanswered_questions), desc="Answering") as pbar:
-            for future in as_completed(future_to_question):
-                try:
-                    result = future.result()
-                    
-                    if result["failed"]:
+    # Split questions into batches
+    batches = [unanswered_questions[i:i + batch_size] for i in range(0, len(unanswered_questions), batch_size)]
+    
+    logger.info(f"Processing {len(batches)} batches of size {batch_size}")
+    
+    with tqdm(total=total_processed, desc="Answering") as pbar:
+        for batch_idx, batch in enumerate(batches):
+            logger.info(f"Processing batch {batch_idx + 1}/{len(batches)} (size: {len(batch)})")
+            
+            # Process current batch in parallel
+            batch_results = []
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                # Submit tasks for current batch
+                future_to_question = {
+                    executor.submit(process_single_question, question_data): question_data 
+                    for question_data in batch
+                }
+                
+                # Collect results for current batch
+                for future in as_completed(future_to_question):
+                    try:
+                        result = future.result()
+                        batch_results.append(result)
+                        
+                        if result["failed"]:
+                            failed_count += 1
+                        
+                    except Exception as e:
+                        logger.error(f"Error processing question: {e}")
                         failed_count += 1
-                    
-                    # Remove the failed flag before saving
-                    result.pop("failed", None)
-                    output_data.append(result)
-                    answered_prompts.add(result["prompt"])
-                    counter += 1
 
-                    # Save progress periodically
-                    if counter % SAVE_EVERY == 0:
-                        if save_progress(output_data, OUTPUT_FILE):
-                            logger.info(f"✓ Saved progress: {counter} answers processed ({failed_count} failed)")
-                        else:
-                            logger.error("Failed to save progress!")
-                    
-                    pbar.update(1)
-                    
-                except Exception as e:
-                    logger.error(f"Error processing question: {e}")
-                    failed_count += 1
-                    pbar.update(1)
+            # Process batch results
+            for result in batch_results:
+                # Remove the failed flag before saving
+                result.pop("failed", None)
+                output_data.append(result)
+                answered_prompts.add(result["prompt"])
+                counter += 1
+                
+                pbar.update(1)
+
+            # Save progress periodically (after each batch or when SAVE_EVERY is reached)
+            if (batch_idx + 1) % (SAVE_EVERY // batch_size or 1) == 0 or counter % SAVE_EVERY == 0:
+                if save_progress(output_data, OUTPUT_FILE):
+                    logger.info(f"✓ Saved progress: {counter} answers processed ({failed_count} failed)")
+                else:
+                    logger.error("Failed to save progress!")
 
     # Final save
     if save_progress(output_data, OUTPUT_FILE):
@@ -386,10 +399,10 @@ def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_wo
 
 
 # Convenience function to choose processing method
-def main(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, use_parallel: bool = False, max_workers: int = 3):
+def main(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, use_parallel: bool = False, max_workers: int = 3, batch_size: int = 4):
     """Main function that chooses between sequential and parallel processing."""
     if use_parallel:
-        main_parallel(INPUT_FILE, OUTPUT_FILE, SAVE_EVERY, max_workers)
+        main_parallel(INPUT_FILE, OUTPUT_FILE, SAVE_EVERY, max_workers, batch_size)
     else:
         main_sequential(INPUT_FILE, OUTPUT_FILE, SAVE_EVERY)
 
@@ -402,5 +415,6 @@ if __name__ == "__main__":
     # Choose processing method
     USE_PARALLEL = True  # Set to False for sequential processing
     MAX_WORKERS = 2  # Reduce if your server gets overloaded
+    BATCH_SIZE = 4  # Batch size for parallel processing
     
-    main(INPUT_FILE, OUTPUT_FILE, SAVE_EVERY, USE_PARALLEL, MAX_WORKERS)
+    main(INPUT_FILE, OUTPUT_FILE, SAVE_EVERY, USE_PARALLEL, MAX_WORKERS, BATCH_SIZE)

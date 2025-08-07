@@ -1,0 +1,5 @@
+## 14. Revision of TA on reversion or promotion with retrospective effect
+
+The travelling allowance of an individual who is promotedlgranted increased rate of pay (including annual increment)/reverted with retrospective effect should not be revised in respect of the period intervening between the date of promotionlgrant of increased rate of pay (including annual increment)/ reversion and that on which it is notified except when the notification implied a change of duties. In the case of all travelling allowance claims audited before the notification appears, the audit authorities should be guided by the facts known officially at the time but in case of travelling allowance claims not presented or audited before the promotionlgrants of increased rate of pay (including annual increment)/ reversion is notified, audit authorities will recognise the retrospective effect of the notification:.
+
+The family of such an individual will be entitled to TA of the grade allowed to the individual himself irrespective of whether the family precede or follows him within the prescribed period.

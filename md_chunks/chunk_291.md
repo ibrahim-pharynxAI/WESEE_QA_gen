@@ -1,0 +1,3 @@
+## 247 . Authority for Moves
+
+In case of individuals recalled to India from Indian diplomatic missions abroad or transferred to another mission on completion of the prescribed tenure of appointment or posted from India to fill authorised appointments in those missions; posting orderslmovement orders, issued by Branches at IHQ of MoD (Army)lAir HQs or Record Offices; in case of JCOsIOR and their equivalents in the Air Force posted back to India; will be accepted as authority for the moves undertaken. C&amp;W ListDaily List issued by IHQ of MoD (Navy) or DOD issued by Captain in Naval Barracks; in the case of sailors will be accepted as authority for the move In other cases , Government orders will be necessary

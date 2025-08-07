@@ -1,0 +1,3 @@
+## 101. Reimbursement of expenses incurred by civilian Government servants of Defence Research and Development Organisation for carrying bonafide Government stores
+
+Whenever a Defence Civilian Government Servant of Defence Research and Development Organisation is authorised to carry bona-fide Government stores by his Controlling Officer as luggage when proceeding or returning from TD for trial or other urgent purposes and if such Government stores exceed the limits of normal free entitlement allowed by the railways the extra cost by the Government Servant to the Railways for carriage of the goods may be reimbursed to the Government Servant concerned. Such claims will be admitted with the TAclaim of the person concerned on production of Railway cash receipt in paid along

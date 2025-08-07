@@ -1,0 +1,3 @@
+## 204. Lien on conveyance preparatory to retirement
+
+The entitlement on retirement can be availed of by an individual within one year of date of retirement. Lien on conveyance laid down in Rule 16 will apply to moves of service personnel. Members of their families and baggage may precede the service personnel by not more than two months or follow them within one year; the period of two months will be counted from the date on which service of personnel superannuatedlretires whereas the period of one year will be counted from the date on which the individual himself moves. The time limits may be extended by the competent authority as stated in Appendix- XI in individual cases attendant with special circumstances:

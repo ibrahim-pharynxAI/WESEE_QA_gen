@@ -1,0 +1,5 @@
+## 218-B. Travelling Allowance entitlement of family of deceased accompanying the dead body of VIP etc.
+
+Government will bear expenditure of TA (without halting allowance and incidentals) of one member of the family for the journey performed by airl steamerl raillroad between place of death and place of last rites to accompany dead body of deceased VIPs i.e\_ Cabinet Ministers; Chief Justice of Supreme Court; Speaker of Lok Sabha; Ministers of State; Judges of Supreme Court; Deputy Chairman of Rajya Sabha; Deputy Speaker of Lok Sabha; Deputy Minister and Members of Parliament and Government servants irrespective of the fact whether the death occurs at HQor at tour station. This will not be adjusted against the entitlement of the members of the family of the deceased available under these rules after death or demission of officer. Sucha member of the family will also be allowed TA (without halting allowance and incidentals) for thejourney by airlsteamerIraillroad from the place he commences such journey to the place of death.
+
+The above provisions will also be applicable to Defence Services Personnel.

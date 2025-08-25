@@ -1,12 +1,5 @@
-## PREFACE
+## 2 Methodology
 
-- 1 Travel Regulations form a partof the Defence Service Regulations and are a compendium Air Force and Civilians from the Defence Services Estimates. The last compendium was brought out in 1991. Army, Navy paid
-2. The Regulations being evolutionary and dynamic; necessitates periodic review to make it contemporary: The Travel Regulations Revision Cell; which was constituted t0 undertake a complete revision of the compendium; has produced a comprehensive Edition; incorporating Govt orders relating to travel entitlements upto 2013. Aug
-- 3 . This revised edition is the result of extensive and meticulous efforts in by all the stake holders which has resulted into updating &amp; revising these regulations by incorporating the various Govt orders issued since August 1989. put
-- 4 wish to place on record my appreciation for all the DepartmentsMings involved in bringing out this revised Travel Regulations' .
+Next, we provide a comprehensive overview of the research objectives addressed in this study. Section II delves into the detailed methodology and theoretical concepts that foster the ideas explored in this work, setting the stage for experimental design, data selection, and architectural development. The implementation of the proposed architectures is discussed in Section III. Section IV presents the findings of our experiments along with an indepth analysis. Finally, Section V concludes the study by summarizing the main results and discussing the limitations, and offers insights into potential future directions for research.
 
-(RKMATHUR)
-
-Defence Secretary Ministry of Defence Govt: of India
-
-<!-- image -->
+The decision to incorporate MaxPooling, MinPooling, and MaxMinPooling layers within a single CNN architecture stems from the goal of harnessing their complementary advantages. While MaxPooling focuses on the most salient features, potentially missing finer details, MinPooling ensures these subtleties are preserved. MaxMinPooling further enriches the feature representation of the model by preserving a broad spectrum of feature activations. The proposed approach aims to balance the focus on dominant and subtle features by averaging the probabilities derived from models based on each pooling strategy, thereby achieving superior classification performance across a diverse set of image datasets. This integrated pooling strategy highlights the novelty of the model and its potential to set a benchmark in image classification tasks, particularly those requiring nuanced interpretation of visual data, such as in the detection of COVID-19 from medical imaging [32-37].

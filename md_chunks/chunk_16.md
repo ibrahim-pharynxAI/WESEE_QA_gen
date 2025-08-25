@@ -1,20 +1,19 @@
-## 9 Duties and powers of controlling officers
+## 5.3 Future work
 
-It is the duty of a Controlling Officer; before signing or countersigning a travelling allowance bills:
+The promising results of the study open several avenues for future research, as follows:
 
-- (a) To scrutinise the necessity; frequency and duration of journey and halts for which travelling allowance is claimed, and to disallow the whole or any part of the travelling allowance claimed for any journey or halt if he considers that ajourney was unnecessary or unduly protracted or that a halt was of excessive duration:
-- NOTE: To enable the controlling authority to check travelling claims in accordance with the above; individuals shall append therewith a certificate from the CO of the temporary duty station showing particulars of the nature and the extent of State hospitality enjoyed during the periods covered by their claims;
-- (b) To see in the case of non-gazetted officers particularly of stenographers, personal assistants and Multi   Tasking Staff
-- Government servants that the particulars of the journeys are certified by the gazetted officer under whose instructions the journeys were performed;
-- (c) To scrutinise carefully the distances entered in travelling allowance bills;
-- (d) To satisfy himself that
-- (i) The fare for journeys by railway or steamer, when admissible under the rules has been claimed at the rate applicable to the class of accommodation actually used.
-- (ii) Concessional return tickets for the journey or journeys charged for in the bill were purchased wherever and whenever possible.
-- (iii)   Where the actual cost of transporting personal effects is claimed under these rules, the cost at which such effects etc. were transported was reasonable.
-- (iv) A Monthly Season Railway Ticket is less expensive than the daily fares and or road mileage which would otherwise be admissible to the individual.
-- (e) To observe any subsidiary rules or orders which a competent authority may make for his guidance;
-- (f) To decide what scale of   travelling allowance will be drawn for the particular journey; referring doubtful cases to superior authority;
-- (g) To satisfy himself that claims for reimbursement under Rule 184 (viii) of the costof issuable railway warrants in respect of soldiers sailors, airmen, noncombatants (enrolled) and boys are supported by proof, they should indicate the ticket numbers;
-- (h) To satisfy himself that in case of claims for reimbursement under Rule 208, the claimant and members of his family home town or the other place to which he might have proceeded to settle down e.9. by requiring the production of original railway vouchers relating to transportation of personal effect; conveyance etc.
+- 1) Further exploration into combining different pooling strategies within CNN architectures could yield even more efficient and accurate models. Investigating the impact of varying the proportion of each pooling method's contribution to the final model output may provide insights into optimal configurations for specific image classification tasks.
+- 2) Extending the application of our proposed architecture to other domains, such as video analysis, natural language processing, or complex pattern recognition tasks, could demonstrate the versatility and adaptability of the model beyond static image classification. The ability of our model to capture a wide range
 
-NOTE: The controlling officer would be held personally responsible for anyl every payment caused as a result of his failure to exercise necessary check expected of him.
+of feature activations makes it a promising candidate for these complex applications.
+
+- 3) Integrating emerging deep learning techniques, such as attention mechanisms or generative adversarial networks (GANs), with our pooling strategy could enhance the model's performance. These techniques could provide additional context or augment the training data, potentially improving the ability of the model to generalize from limited or noisy datasets.
+- 4) The deployment of the proposed model in real-world applications, particularly in health care for disease detection and progression monitoring tasks, could have significant implications. Further validation and adaptation of the model to meet clinical requirements would be essential steps toward this goal.
+
+Acknowledgements The authors sincerely thank the editor and anonymous reviewers for their valuable time, insightful feedback, and suggestions, which significantly improved this work. Authors would like to acknowledge the support from the Infosys Centre for AI, IIIT Delhi, India.
+
+Author Contributions All authors contributed to the conception and design of the study. Material preparation, data collection, and analysis were carried out collaboratively. The first draft of the manuscript was collectively written, and all authors reviewed and approved the final version. *Corresponding author
+
+Funding This research was conducted without any financial support or external funding.
+
+Data availability All data supporting the findings of this study are available from the authors upon request. After acceptance, all code and data will be made publicly available in an open repository, and its link will be provided here.

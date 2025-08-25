@@ -1,0 +1,14 @@
+{
+  "processed_files": {
+    "PAPER_SHIP_CLASSIFICATION": {
+      "pdf_path": "PDF/PAPER_SHIP_CLASSIFICATION.pdf",
+      "completed_at": 1756114856.2231073,
+      "output_files": {
+        "markdown": "QA_generator/parser/parsed_outputs/PAPER_SHIP_CLASSIFICATION_parsed.md",
+        "questions": "question_outputs/PAPER_SHIP_CLASSIFICATION_questions.json",
+        "qa_pairs": "qa_outputs/PAPER_SHIP_CLASSIFICATION_qa.json"
+      }
+    }
+  },
+  "current_batch": {}
+}

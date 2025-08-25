@@ -1,9 +1,5 @@
-## DEFENCE SERVICES REGULATIONS
+## Abstract
 
-<!-- image -->
+This study introduces a novel probabilistic pooling convolutional neural network (PP-CNN) classifier designed to enhance image classification. The PP-CNN integrates probabilistic outputs from three distinct architectures utilizing MaxPooling, MinPooling, and MaxMinPooling layers. By averaging these probabilities, the model achieves improved accuracy compared to individual models. Notably, the proposed CNN model employs Positive ReLU activation with MaxPooling, Negative ReLU activation with MinPooling, and both Positive and Negative ReLU activations with MaxMinPooling. This strategy ensures the retention of both positive and negative relevant features, enhancing the classification performance by capturing a broader range of critical information. The proposed model has been comprehensively evaluated for its generalizability on four diverse datasets: CIFAR-10, CIFAR-100, CT scan, and X-ray images. Experimental results demonstrate a consistent improvement in classification accuracy across all datasets, highlighting the versatility and effectiveness of the proposed model. The proposed model applies to various image classification tasks, specifically illustrating its utility by detecting COVID-19 from medical images. This work presents the design, implementation, and performance evaluation of the proposed model, underscoring its potential to significantly improve image classification and diagnostic accuracy in medical imaging applications.
 
-;k=k fofu;e TRAVEL REGULATIONS ifj'kksf/kr laLdj.k 2014 REVISED EDITION 2014
-
-¼2014 rd tkjh fd, x, vkns'k lkekU;r% bl fofu;ekoyh esa 'kkfey dj fy, x, gSa½
-
-(Orders issued upto 2014 have generally been incorporated in these regulations)
+Keywords Probabilistic Pooling Convolutional Neural Network (PP-CNN) /C1 MaxPooling /C1 MinPooling /C1 MaxMinPooling /C1 COVID-19 detection

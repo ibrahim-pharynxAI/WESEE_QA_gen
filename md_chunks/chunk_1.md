@@ -1,15 +1,5 @@
-## DEFENCE SERVICES REGULATIONS
+## PP-CNN: probabilistic pooling CNN for enhanced image classification
 
-<!-- image -->
+Narendra Kumar Mishra 1 · Pushpendra Singh 2 · Anubha Gupta 3 · Shiv Dutt Joshi 1
 
-TRAVEL REGULATIONS 2014 REVISED EDITION 2014
-
-(2014 (Orders issued upto 2014 have generally been incorporated in these regulations)
-
-MDMRF.T. 15 9000-2013
-
-egkizca/kd] Hkkjr ljdkj eqnz.kky;] feUVks jksM] ubZ fnYyh&amp;110002 }kjk eqfnzr rFkk izdk'ku fu;a=d] Hkkjr ljdkj] fnYyh&amp;110054 }kjk izdkf'kr
-
-PRINTED BY THE GENERAL MANAGER, GOVT. OF INDIA PRESS, MINTO ROAD, NEW DELHI-110002 AND PUBLISHED BY THE CONTROLLER OF PUBLICATIONS, DELHI-1100054
-
-<!-- image -->
+Received: 17 June 2024 / Accepted: 29 November 2024 / Published online: 20 December 2024 /C211 The Author(s), under exclusive licence to Springer-Verlag London Ltd., part of Springer Nature 2024

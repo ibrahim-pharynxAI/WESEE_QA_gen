@@ -2,54 +2,44 @@ import re
 
 # Regex patterns as compiled objects
 RE_JUNK_COMMANDS = re.compile(
-    r'(\\Big|\\rceil|\\rfloor|\\rce\w*|\\rc\w*|\\rf\w*|\\r\w*|\\dots|\\quad)\s*'
+    r"(\\Big|\\rceil|\\rfloor|\\rce\w*|\\rc\w*|\\rf\w*|\\r\w*|\\dots|\\quad)\s*"
 )
 
 RE_HTML_IMAGE_COMMENT = re.compile(
-    r'^\s*<!--\s*image\s*-->\s*$', 
-    flags=re.MULTILINE | re.IGNORECASE
+    r"^\s*<!--\s*image\s*-->\s*$", flags=re.MULTILINE | re.IGNORECASE
 )
 
-RE_UNKNOWN_LATEX_COMMAND = re.compile(
-    r'\\[a-zA-Z]+'
-)
+RE_UNKNOWN_LATEX_COMMAND = re.compile(r"\\[a-zA-Z]+")
 
-RE_STRAY_BRACES = re.compile(
-    r'[\{\}]'
-)
+RE_STRAY_BRACES = re.compile(r"[\{\}]")
 
-RE_WHITESPACE = re.compile(
-    r'\s+'
-)
+RE_WHITESPACE = re.compile(r"\s+")
 
-RE_LATEX_FORMULAS = re.compile(
-    r'(\${1,2})(.*?)(\1)',
-    flags=re.DOTALL
-)
+RE_LATEX_FORMULAS = re.compile(r"(\${1,2})(.*?)(\1)", flags=re.DOTALL)
 
 
 def remove_junk_commands(latex: str) -> str:
-    return RE_JUNK_COMMANDS.sub(' ', latex)
+    return RE_JUNK_COMMANDS.sub(" ", latex)
 
 
 def remove_html_image_comments(latex: str) -> str:
-    return RE_HTML_IMAGE_COMMENT.sub('', latex)
+    return RE_HTML_IMAGE_COMMENT.sub("", latex)
 
 
 def remove_unknown_latex_commands(latex: str) -> str:
-    return RE_UNKNOWN_LATEX_COMMAND.sub('', latex)
+    return RE_UNKNOWN_LATEX_COMMAND.sub("", latex)
 
 
 def remove_stray_braces(latex: str) -> str:
-    return RE_STRAY_BRACES.sub('', latex)
+    return RE_STRAY_BRACES.sub("", latex)
 
 
 def collapse_whitespace(text: str) -> str:
-    return RE_WHITESPACE.sub(' ', text)
+    return RE_WHITESPACE.sub(" ", text)
 
 
 def clean_edges(text: str) -> str:
-    return text.strip(' ,.;')
+    return text.strip(" ,.;")
 
 
 def clean_latex(latex: str) -> str:
@@ -73,6 +63,7 @@ def clean_latex_formulas_in_md(md_text: str) -> str:
     """
     Finds all LaTeX formulas in Markdown text and cleans them in-place.
     """
+
     def replace_func(match):
         delim = match.group(1)
         latex = match.group(2)
@@ -81,25 +72,26 @@ def clean_latex_formulas_in_md(md_text: str) -> str:
 
     return RE_LATEX_FORMULAS.sub(replace_func, md_text)
 
+
 def markdown_splitter(md_text: str) -> str:
     """
     Divide the markdown content into chunks based on '##' subheadings.
     Each chunk is separated by a line of 50 dashes.
-    
+
     Args:
         md_text (str): Markdown text to split.
-    
+
     Returns:
         str: Chunks joined by separator lines.
     """
     # Split on each '##' subheading (but keep the delimiter in result)
-    sections = re.split(r'(?=^## )', md_text, flags=re.MULTILINE)
+    sections = re.split(r"(?=^## )", md_text, flags=re.MULTILINE)
 
     # Remove empty sections and strip whitespace
     sections = [section.strip() for section in sections if section.strip()]
 
     # Join with separator
-    return ('\n' + '-' * 50 + '\n').join(sections)
+    return ("\n" + "-" * 50 + "\n").join(sections)
 
 
 if __name__ == "__main__":

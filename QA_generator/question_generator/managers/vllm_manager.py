@@ -17,7 +17,7 @@ def check_vLLM(port: int = 8096) -> bool:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            timeout=10
+            timeout=10,
         )
 
         # if response.returncode != 0:
@@ -47,7 +47,7 @@ def start_vllm_server(
     port: int = 8096,
     gpu_memory_utilization: float = 0.3,
     max_wait_time: int = 120,
-    wait_interval: int = 5
+    wait_interval: int = 5,
 ) -> bool:
     """
     Start the vLLM server if not already running.
@@ -63,9 +63,12 @@ def start_vllm_server(
         "vllm",
         "serve",
         model_path,
-        "--host", host,
-        "--port", str(port),
-        "--gpu-memory-utilization", str(gpu_memory_utilization)
+        "--host",
+        host,
+        "--port",
+        str(port),
+        "--gpu-memory-utilization",
+        str(gpu_memory_utilization),
     ]
 
     try:
@@ -82,7 +85,9 @@ def start_vllm_server(
 
             if process.poll() is not None:
                 stdout, stderr = process.communicate()
-                logger.error(f"vLLM server failed to start. Exit code: {process.returncode}")
+                logger.error(
+                    f"vLLM server failed to start. Exit code: {process.returncode}"
+                )
                 logger.error(f"Stderr: {stderr.decode()}")
                 return False
 

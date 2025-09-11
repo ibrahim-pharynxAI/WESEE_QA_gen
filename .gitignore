@@ -9,3 +9,5 @@ logs/
 *.log
 
 base_model/
+
+gitpush.sh

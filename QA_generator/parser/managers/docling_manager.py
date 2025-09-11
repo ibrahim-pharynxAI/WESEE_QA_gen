@@ -11,7 +11,6 @@ from .regex_manager import clean_latex, clean_latex_formulas_in_md
 from .log_manager import LogManager
 
 
-
 class PDFConverter:
     def __init__(
         self,
@@ -20,7 +19,7 @@ class PDFConverter:
         do_ocr=True,
         do_formula_enrichment=True,
         do_table_structure=True,
-        do_figure_enrichment=True
+        do_figure_enrichment=True,
     ):
         self.cache_dir = Path(cache_dir)
         self.output_dir = Path(output_dir)
@@ -29,7 +28,7 @@ class PDFConverter:
             do_table_structure=do_table_structure,
             do_formula_enrichment=do_formula_enrichment,
             do_figure_enrichment=do_figure_enrichment,
-            do_ocr=do_ocr
+            do_ocr=do_ocr,
         )
 
     def clean_latex(self, latex):

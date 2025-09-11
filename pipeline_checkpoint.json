@@ -8,6 +8,24 @@
         "questions": "question_outputs/PAPER_SHIP_CLASSIFICATION_questions.json",
         "qa_pairs": "qa_outputs/PAPER_SHIP_CLASSIFICATION_qa.json"
       }
+    },
+    "PP_CNN": {
+      "pdf_path": "PDF/PP_CNN.pdf",
+      "completed_at": 1757411936.8278546,
+      "output_files": {
+        "markdown": "QA_generator/parser/parsed_outputs/PP_CNN_parsed.md",
+        "questions": "question_outputs/PP_CNN_questions.json",
+        "qa_pairs": "qa_outputs/PP_CNN_qa.json"
+      }
+    },
+    "file000": {
+      "pdf_path": "PDF/file000.pdf",
+      "completed_at": 1757416846.9881961,
+      "output_files": {
+        "markdown": "QA_generator/parser/parsed_outputs/file000_parsed.md",
+        "questions": "question_outputs/file000_questions.json",
+        "qa_pairs": "qa_outputs/file000_qa.json"
+      }
     }
   },
   "current_batch": {}

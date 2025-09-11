@@ -108,14 +108,14 @@ def generate_answers(content: str, question: str, max_attempts: int = 3) -> str:
         try:
             # Reduce max_tokens to speed up generation
             max_tokens = 4000 if attempt == 1 else (3000 if attempt == 2 else 2000)
-            
+
             payload = {
                 "model": "base_model/Qwen2.5-7b-Instruct",
                 "messages": [{"role": "system", "content": prompt}],
                 "max_tokens": max_tokens,
                 "temperature": 0.5,  # Reduced temperature for faster, more focused responses
             }
-            
+
             response = requests.post(
                 "http://localhost:8096/v1/chat/completions",
                 headers=headers,
@@ -123,27 +123,31 @@ def generate_answers(content: str, question: str, max_attempts: int = 3) -> str:
                 timeout=120,  # Reduced timeout for faster failure detection
             )
             response.raise_for_status()
-            
+
             data = response.json()
             if "choices" in data and data["choices"]:
                 content = data["choices"][0]["message"]["content"].strip()
-                if content and not content.startswith('Error'):
+                if content and not content.startswith("Error"):
                     logger.info(f"✓ Generated answer on attempt {attempt}")
                     return content
-                    
+
         except requests.exceptions.Timeout:
             logger.warning(f"[Attempt {attempt}] Request timeout - retrying")
             time.sleep(1)  # Shorter sleep
         except requests.exceptions.ConnectionError:
-            logger.warning(f"[Attempt {attempt}] Connection error - server may be overloaded")
+            logger.warning(
+                f"[Attempt {attempt}] Connection error - server may be overloaded"
+            )
             time.sleep(2)  # Shorter sleep
         except requests.exceptions.HTTPError as e:
-            logger.warning(f"[Attempt {attempt}] HTTP error {e.response.status_code}: {e}")
+            logger.warning(
+                f"[Attempt {attempt}] HTTP error {e.response.status_code}: {e}"
+            )
             time.sleep(1)
         except Exception as e:
             logger.warning(f"[Attempt {attempt}] Unexpected error: {e}")
             time.sleep(1)
-    
+
     logger.error(f"Failed to generate answer after {max_attempts} attempts")
     return "Error: Could not generate answer after multiple attempts"
 
@@ -152,13 +156,13 @@ def process_single_question(args):
     """Process a single question - for use with threading."""
     content, question, question_id = args
     logger.info(f"Processing question {question_id}: {question[:60]}...")
-    
+
     response = generate_answers(content, question)
-    
+
     if response.startswith("Error:"):
         logger.warning(f"Failed to generate answer for question {question_id}")
         return {"prompt": question, "response": response, "failed": True}
-    
+
     return {"prompt": question, "response": response, "failed": False}
 
 
@@ -167,20 +171,21 @@ def load_existing_answers(path: str) -> List[dict]:
     if not os.path.exists(path):
         logger.info(f"Output file {path} doesn't exist - starting fresh")
         return []
-    
+
     try:
         with open(path, "r", encoding="utf-8") as f:
             json_file = json.load(f)
-            
+
         # Filter out error responses
         valid_answers = [
-            pairs for pairs in json_file 
-            if not str(pairs.get('response', 'Error')).strip().startswith('Error')
+            pairs
+            for pairs in json_file
+            if not str(pairs.get("response", "Error")).strip().startswith("Error")
         ]
-        
+
         logger.info(f"Loaded {len(valid_answers)} existing valid answers from {path}")
         return valid_answers
-        
+
     except json.JSONDecodeError as e:
         logger.warning(f"Output file is corrupted: {e} - starting from scratch")
         # Backup the corrupted file
@@ -200,16 +205,16 @@ def save_progress(output_data: List[dict], output_file: str) -> bool:
         with file_lock:
             # Create directory if it doesn't exist
             os.makedirs(os.path.dirname(output_file), exist_ok=True)
-            
+
             # Write to temporary file first
             temp_file = f"{output_file}.tmp"
             with open(temp_file, "w", encoding="utf-8") as f:
                 json.dump(output_data, f, ensure_ascii=False, indent=2)
-            
+
             # Move temp file to final location (atomic operation)
             os.rename(temp_file, output_file)
             return True
-        
+
     except Exception as e:
         logger.error(f"Error saving progress: {e}")
         return False
@@ -217,11 +222,11 @@ def save_progress(output_data: List[dict], output_file: str) -> bool:
 
 def main_sequential(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5):
     """Original sequential processing function - optimized version."""
-    
-    logger.info(f"Starting answer generation process (Sequential)")
+
+    logger.info("Starting answer generation process (Sequential)")
     logger.info(f"Input: {INPUT_FILE}")
     logger.info(f"Output: {OUTPUT_FILE}")
-    
+
     # Load input data
     try:
         with open(INPUT_FILE, "r", encoding="utf-8") as f:
@@ -239,7 +244,7 @@ def main_sequential(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5):
     # Prepare unanswered questions
     unanswered_questions = []
     total_questions = 0
-    
+
     for item in data:
         content = item["content"]
         for question in item["questions"]:
@@ -258,16 +263,20 @@ def main_sequential(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5):
     # Process questions sequentially with progress tracking
     counter = 0
     failed_count = 0
-    
-    for i, (content, question) in enumerate(tqdm(unanswered_questions, desc="Answering"), 1):
-        logger.info(f"Processing question {i}/{len(unanswered_questions)}: {question[:60]}...")
-        
+
+    for i, (content, question) in enumerate(
+        tqdm(unanswered_questions, desc="Answering"), 1
+    ):
+        logger.info(
+            f"Processing question {i}/{len(unanswered_questions)}: {question[:60]}..."
+        )
+
         response = generate_answers(content, question)
-        
+
         if response.startswith("Error:"):
             failed_count += 1
             logger.warning(f"Failed to generate answer for: {question[:60]}...")
-        
+
         result = {"prompt": question, "response": response}
         output_data.append(result)
         answered_prompts.add(question)
@@ -276,16 +285,18 @@ def main_sequential(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5):
         # Save progress periodically
         if counter % SAVE_EVERY == 0:
             if save_progress(output_data, OUTPUT_FILE):
-                logger.info(f"✓ Saved progress: {counter} answers processed ({failed_count} failed)")
+                logger.info(
+                    f"✓ Saved progress: {counter} answers processed ({failed_count} failed)"
+                )
             else:
                 logger.error("Failed to save progress!")
-        
+
         # Reduced pause to speed up processing
         time.sleep(0.5)
 
     # Final save
     if save_progress(output_data, OUTPUT_FILE):
-        logger.info(f"✓ Final save complete!")
+        logger.info("✓ Final save complete!")
         logger.info(f"Total processed: {counter}")
         logger.info(f"Successful: {counter - failed_count}")
         logger.info(f"Failed: {failed_count}")
@@ -294,13 +305,21 @@ def main_sequential(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5):
         logger.error("Failed to save final results!")
 
 
-def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_workers: int = 3, batch_size: int = 4):
+def main_parallel(
+    INPUT_FILE: str,
+    OUTPUT_FILE: str,
+    SAVE_EVERY: int = 5,
+    max_workers: int = 3,
+    batch_size: int = 4,
+):
     """Parallel processing version with batch processing for better resource management."""
-    
-    logger.info(f"Starting answer generation process (Parallel with {max_workers} workers, batch size {batch_size})")
+
+    logger.info(
+        f"Starting answer generation process (Parallel with {max_workers} workers, batch size {batch_size})"
+    )
     logger.info(f"Input: {INPUT_FILE}")
     logger.info(f"Output: {OUTPUT_FILE}")
-    
+
     # Load input data
     try:
         with open(INPUT_FILE, "r", encoding="utf-8") as f:
@@ -318,13 +337,15 @@ def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_wo
     # Prepare unanswered questions with IDs
     unanswered_questions = []
     total_questions = 0
-    
+
     for item in data:
         content = item["content"]
         for question in item["questions"]:
             total_questions += 1
             if question not in answered_prompts:
-                unanswered_questions.append((content, question, len(unanswered_questions) + 1))
+                unanswered_questions.append(
+                    (content, question, len(unanswered_questions) + 1)
+                )
 
     logger.info(f"Total questions: {total_questions}")
     logger.info(f"Already answered: {len(answered_prompts)}")
@@ -338,34 +359,41 @@ def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_wo
     counter = 0
     failed_count = 0
     total_processed = len(unanswered_questions)
-    
+
     # Split questions into batches
-    batches = [unanswered_questions[i:i + batch_size] for i in range(0, len(unanswered_questions), batch_size)]
-    
+    batches = [
+        unanswered_questions[i : i + batch_size]
+        for i in range(0, len(unanswered_questions), batch_size)
+    ]
+
     logger.info(f"Processing {len(batches)} batches of size {batch_size}")
-    
+
     with tqdm(total=total_processed, desc="Answering") as pbar:
         for batch_idx, batch in enumerate(batches):
-            logger.info(f"Processing batch {batch_idx + 1}/{len(batches)} (size: {len(batch)})")
-            
+            logger.info(
+                f"Processing batch {batch_idx + 1}/{len(batches)} (size: {len(batch)})"
+            )
+
             # Process current batch in parallel
             batch_results = []
             with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 # Submit tasks for current batch
                 future_to_question = {
-                    executor.submit(process_single_question, question_data): question_data 
+                    executor.submit(
+                        process_single_question, question_data
+                    ): question_data
                     for question_data in batch
                 }
-                
+
                 # Collect results for current batch
                 for future in as_completed(future_to_question):
                     try:
                         result = future.result()
                         batch_results.append(result)
-                        
+
                         if result["failed"]:
                             failed_count += 1
-                        
+
                     except Exception as e:
                         logger.error(f"Error processing question: {e}")
                         failed_count += 1
@@ -377,19 +405,23 @@ def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_wo
                 output_data.append(result)
                 answered_prompts.add(result["prompt"])
                 counter += 1
-                
+
                 pbar.update(1)
 
             # Save progress periodically (after each batch or when SAVE_EVERY is reached)
-            if (batch_idx + 1) % (SAVE_EVERY // batch_size or 1) == 0 or counter % SAVE_EVERY == 0:
+            if (batch_idx + 1) % (
+                SAVE_EVERY // batch_size or 1
+            ) == 0 or counter % SAVE_EVERY == 0:
                 if save_progress(output_data, OUTPUT_FILE):
-                    logger.info(f"✓ Saved progress: {counter} answers processed ({failed_count} failed)")
+                    logger.info(
+                        f"✓ Saved progress: {counter} answers processed ({failed_count} failed)"
+                    )
                 else:
                     logger.error("Failed to save progress!")
 
     # Final save
     if save_progress(output_data, OUTPUT_FILE):
-        logger.info(f"✓ Final save complete!")
+        logger.info("✓ Final save complete!")
         logger.info(f"Total processed: {counter}")
         logger.info(f"Successful: {counter - failed_count}")
         logger.info(f"Failed: {failed_count}")
@@ -399,7 +431,14 @@ def main_parallel(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, max_wo
 
 
 # Convenience function to choose processing method
-def main(INPUT_FILE: str, OUTPUT_FILE: str, SAVE_EVERY: int = 5, use_parallel: bool = False, max_workers: int = 3, batch_size: int = 4):
+def main(
+    INPUT_FILE: str,
+    OUTPUT_FILE: str,
+    SAVE_EVERY: int = 5,
+    use_parallel: bool = False,
+    max_workers: int = 3,
+    batch_size: int = 4,
+):
     """Main function that chooses between sequential and parallel processing."""
     if use_parallel:
         main_parallel(INPUT_FILE, OUTPUT_FILE, SAVE_EVERY, max_workers, batch_size)
@@ -411,10 +450,10 @@ if __name__ == "__main__":
     INPUT_FILE = "question_outputs/Clockmaker_questions.json"
     OUTPUT_FILE = "qa_outputs/Clockmaker_qa.json"
     SAVE_EVERY = 5
-    
+
     # Choose processing method
     USE_PARALLEL = True  # Set to False for sequential processing
     MAX_WORKERS = 2  # Reduce if your server gets overloaded
     BATCH_SIZE = 4  # Batch size for parallel processing
-    
+
     main(INPUT_FILE, OUTPUT_FILE, SAVE_EVERY, USE_PARALLEL, MAX_WORKERS, BATCH_SIZE)

@@ -1,11 +1,11 @@
-import argparse
 from .managers.docling_manager import PDFConverter
 from .managers.log_manager import LogManager
 
-#Initialize logging
+# Initialize logging
 logger = LogManager().get_logger()
 
-def main(pdf_path  :str, cache_dir : str = "QA_generator/parser/TempParsed"):
+
+def main(pdf_path: str, cache_dir: str = "QA_generator/parser/TempParsed"):
     try:
         converter = PDFConverter(cache_dir=cache_dir)
         result = converter.convert_pdf(pdf_path)
@@ -20,6 +20,7 @@ def main(pdf_path  :str, cache_dir : str = "QA_generator/parser/TempParsed"):
         return 1
 
     return 0
+
 
 if __name__ == "__main__":
     exit(main())

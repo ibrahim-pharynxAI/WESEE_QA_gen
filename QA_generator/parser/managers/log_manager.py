@@ -1,4 +1,3 @@
-from datetime import datetime
 from pathlib import Path
 from loguru import logger
 
@@ -36,7 +35,7 @@ class LogManager:
             format="<green>{time:DD-MM-YYYY HH:mm:ss}</green> | <level>{level: <8}</level> | <level>{message}</level>",
             level="INFO",
             colorize=True,
-            enqueue=False  # important to prevent double console logging
+            enqueue=False,  # important to prevent double console logging
         )
 
         # File (detailed)
@@ -46,12 +45,11 @@ class LogManager:
             level="DEBUG",
             rotation="10 MB",
             retention="7 days",
-            enqueue=True  # safe for multiprocessing, but ONLY for file
+            enqueue=True,  # safe for multiprocessing, but ONLY for file
         )
 
         self.logger = logger
         self.logger.info("Logging initialized")
-
 
     def get_logger(self):
         """Return the Loguru logger."""
@@ -67,7 +65,7 @@ class LogManager:
         logger.remove()  # Clear current handlers
         self._setup_logging()  # Re-setup logging with possibly new level
         logger.info(f"Log level set to {level}")
-    
+
     def add_success_level(self):
         """Add custom SUCCESS level to loguru."""
         try:
@@ -79,4 +77,3 @@ class LogManager:
         """Log a success message."""
         self.add_success_level()
         logger.opt(depth=1).log("SUCCESS", message)
-

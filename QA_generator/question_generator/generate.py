@@ -10,7 +10,8 @@ from question_generator.managers.log_manager import LogManager
 from question_generator.managers.vllm_manager import (
     check_vLLM as check_vllm_manager,
     start_vllm_server as start_vllm_server_manager,
-)  
+)
+
 
 class QuestionGenerator:
     """Main question generator class using vLLM."""
@@ -21,7 +22,7 @@ class QuestionGenerator:
         host: str = "localhost",
         port: int = 8096,
         model_url: Optional[str] = None,
-        model_name: Optional[str] = None
+        model_name: Optional[str] = None,
     ):
         self.model_path = model_path
         self.host = host
@@ -38,18 +39,22 @@ class QuestionGenerator:
     def start_vllm_server(self) -> bool:
         """Start the vLLM server if not already running."""
         return start_vllm_server_manager(
-            model_path=self.model_path,
-            host=self.host,
-            port=self.port
+            model_path=self.model_path, host=self.host, port=self.port
         )
 
     def extract_json_from_response(self, response_text: str) -> Optional[List[dict]]:
-        response_text = re.sub(r'<think>.*?</think>', '', response_text, flags=re.DOTALL).strip()
-        response_text = re.sub(r'({"question":"[^"]*"),\s*"question":"', r'\1},{"question":"', response_text)
-        if not response_text.startswith('['):
-            response_text = f'[{response_text}'
-        if not response_text.endswith(']'):
-            response_text = f'{response_text}]'
+        response_text = re.sub(
+            r"<think>.*?</think>", "", response_text, flags=re.DOTALL
+        ).strip()
+        response_text = re.sub(
+            r'({"question":"[^"]*"),\s*"question":"',
+            r'\1},{"question":"',
+            response_text,
+        )
+        if not response_text.startswith("["):
+            response_text = f"[{response_text}"
+        if not response_text.endswith("]"):
+            response_text = f"{response_text}]"
         try:
             questions = json.loads(response_text)
             if isinstance(questions, list):
@@ -72,7 +77,9 @@ class QuestionGenerator:
             self.global_questions.add(q_text)
         return unique
 
-    def generate_questions(self, content: str, section_number: int, max_attempts: int = 3) -> List[dict]:
+    def generate_questions(
+        self, content: str, section_number: int, max_attempts: int = 3
+    ) -> List[dict]:
         """Use only the /v1/chat/completions endpoint to generate questions."""
         base_prompt = f"""
         You are a specialized question generation expert. Your task is to analyze section {section_number} and create comprehensive questions that thoroughly cover all content aspects.
@@ -126,7 +133,7 @@ Content: {content}
                     f"{self.model_url}/v1/chat/completions",
                     headers=headers,
                     json=payload,
-                    timeout=600
+                    timeout=600,
                 )
                 response.raise_for_status()
                 res = response.json()
@@ -134,7 +141,9 @@ Content: {content}
                 questions = self.extract_json_from_response(content)
                 if questions:
                     deduped = self.deduplicate_questions(questions)
-                    logger.success(f"Generated {len(deduped)} questions for section {section_number} using chat/completions")
+                    logger.success(
+                        f"Generated {len(deduped)} questions for section {section_number} using chat/completions"
+                    )
                     return deduped
             except Exception as e:
                 logger.error(f"Chat completions attempt {attempt}: {str(e)}")
@@ -143,34 +152,45 @@ Content: {content}
         logger.error(f"Chat completions failed for section {section_number}")
         return []
 
-    def split_md_into_chunks(self, content: str, output_dir: str = "md_chunks") -> List[str]:
+    def split_md_into_chunks(
+        self, content: str, output_dir: str = "md_chunks"
+    ) -> List[str]:
         sections = []
         current_section = []
 
         os.makedirs(output_dir, exist_ok=True)
 
-        lines = content.split('\n')
+        lines = content.split("\n")
         for i, line in enumerate(lines):
-            if line.strip().startswith('#'):
+            if line.strip().startswith("#"):
                 if current_section and any(l.strip() for l in current_section[1:]):
-                    chunk = '\n'.join(current_section)
+                    chunk = "\n".join(current_section)
                     sections.append(chunk)
                     # Save chunk to file
-                    with open(os.path.join(output_dir, f"chunk_{len(sections)}.md"), 'w', encoding='utf-8') as f:
+                    with open(
+                        os.path.join(output_dir, f"chunk_{len(sections)}.md"),
+                        "w",
+                        encoding="utf-8",
+                    ) as f:
                         f.write(chunk)
                 current_section = [line]
             else:
                 current_section.append(line)
 
         if current_section and any(l.strip() for l in current_section[1:]):
-            chunk = '\n'.join(current_section)
+            chunk = "\n".join(current_section)
             sections.append(chunk)
-            with open(os.path.join(output_dir, f"chunk_{len(sections)}.md"), 'w', encoding='utf-8') as f:
+            with open(
+                os.path.join(output_dir, f"chunk_{len(sections)}.md"),
+                "w",
+                encoding="utf-8",
+            ) as f:
                 f.write(chunk)
 
-        logger.info(f"Split content into {len(sections)} sections and saved to '{output_dir}'")
+        logger.info(
+            f"Split content into {len(sections)} sections and saved to '{output_dir}'"
+        )
         return sections
-
 
     def process_md(self, file_path: str, output_file: str):
         logger.info(f"Processing {file_path}")
@@ -178,7 +198,7 @@ Content: {content}
             logger.error("vLLM not available.")
             return
 
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
 
         sections = self.split_md_into_chunks(content, output_dir="md_chunks")
@@ -192,7 +212,7 @@ Content: {content}
                 entry = {
                     "content": section,
                     "questions": [q["question"] for q in questions],
-                    "source_file": os.path.basename(file_path)
+                    "source_file": os.path.basename(file_path),
                 }
                 all_data.append(entry)
                 logger.success(f"Added questions for section {i}")
@@ -202,7 +222,7 @@ Content: {content}
         if pdf_name.endswith("_parsed"):
             pdf_name = pdf_name[:-7]  # remove '_parsed' suffix if present
 
-        with open(output_file, 'w', encoding='utf-8') as f:
+        with open(output_file, "w", encoding="utf-8") as f:
             json.dump(all_data, f, indent=2, ensure_ascii=False)
 
         logger.success(f"Saved all questions to {output_file}")
@@ -219,9 +239,7 @@ def main(input_path: str, output: str):
     print(f"Saving questions to: {output}")
 
     generator = QuestionGenerator(
-        model_path="base_model/Qwen2.5-7b-Instruct",
-        host="localhost",
-        port=8096
+        model_path="base_model/Qwen2.5-7b-Instruct", host="localhost", port=8096
     )
 
     if not generator.check_vLLM():
@@ -232,16 +250,12 @@ def main(input_path: str, output: str):
 
     generator.process_md(input_path, output)
 
-    return {
-        "output_file": output
-    }
+    return {"output_file": output}
 
 
 if __name__ == "__main__":
     generator = QuestionGenerator(
-        model_path="base_model/Qwen2.5-7b-Instruct",
-        host="localhost",
-        port=8096
+        model_path="base_model/Qwen2.5-7b-Instruct", host="localhost", port=8096
     )
 
     if not generator.check_vLLM():

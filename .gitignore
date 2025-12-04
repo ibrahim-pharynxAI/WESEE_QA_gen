@@ -11,3 +11,7 @@ logs/
 base_model/
 
 gitpush.sh
+
+question_outputs/
+qa_outputs/
+md_chunks/

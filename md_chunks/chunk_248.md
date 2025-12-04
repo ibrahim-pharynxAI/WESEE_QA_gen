@@ -1,3 +1,0 @@
-## 212. Conveyance to Ex-Service Personnel for the settlement of Disability pension claims where Medical Board papers are not traceable or have been lost
-
-A Soldier; Sailor, Airman or Non Combatant (enrolled )who has been invalided out of the service after having sustained a disability; and whose previous Medical Board Proceedings are not available; andwho is; therefore required to appear before a fresh Medical Board for the purpose of assessing the degree of disability prevailing on the date of re-examination and the probable degree of disability which may have existed on the date of invalidment is entitled to free conveyance for the journey from his home to the station of Medical Board and back to the extent admissible under Rule 155.

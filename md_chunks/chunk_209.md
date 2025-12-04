@@ -1,4 +1,0 @@
-## 6 Declaration of place of visit under LTC to any place in India:
-
-- When the concession to visit any place in India is proposed to be availed of by a Government servant; or any member of the family of such Government servant the intended place of visit shall be declared by the Government servant in advance to his Controlling Officer. The declared place of visit may be changed before the commencement of the journey with the approval of his Controlling Officer but it may not be changed after the commencement of the journey except in exceptional circumstances where it is established that the request for change could not be made before the commencement of the journey owing to circumstances beyond the control of the
-- Government servant.  This relaxation may be made by the Administrative Ministryl Department or by the Head of the Department as the case may be.

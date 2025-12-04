@@ -1,8 +1,0 @@
-## 82 Entitlement of Travelling Allowance when both husband and wife are Central Government Servants
-
-- (a) In case both the husband and wife are Central Government servants; where the transfers takes place to same place within six months, but after 60 days of the transfer of the spouse; fifty percent of the composite transfer grant on transfer shall be allowed to the spouse transferred later. No transfer grant shall be admissible to the spouse transferred later, in case both the transfers are ordered within sixty days. Full composite transfer grant will be applicable if the spouse is transferred after a period of six months or more.
-- (i) In case when both husband and wife require separate cars in public interest; reimbursement of transportation expenses of personal cars to both of the husband-wife couple of Govt. servants on transfer from one station to another subject to the existing terms and conditions' will be admissible.
-- (ii) The above provision will be applicable to Defence Service Personnel and Civilian paid from Defence Service Estimates.
-- (b) In cases where both husband and wife are posted from one and the same station to different stations, in such cases, both husband and wife will be entitled full Composite Transfer Grant and Travelling Allowance independently. However; TA for children; if any; will be admissible to the husband or wife; whom they accompany to the new duty station. For purpose of entitlement to personal effects, both husband and wife together will be eligible to the full quantity of baggage admissible under normal rules. In other words, for the
-
-purpose of transportation of personal effects; both (husband and wife) will be considered as a single family

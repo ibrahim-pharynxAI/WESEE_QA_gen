@@ -1,5 +1,0 @@
-## 273. Conveyance to Family Members on Medical Grounds
-
-If any member of the family of a Government servant serving abroad, who is residing with the Government servant at his posts is seriously ill and is required to proceed elsewhere on medical grounds for the purpose of treatment; Government may, at their discretion; allow payment to the Government servant of the return fares of the sick person and (where necessary), another person travelling with the sick person from the place where the Government servant is posted to such place as the sick person may proceed on medical advice.
-
-NOTE: Since the grant of TA for the members of the family is to be allowed at the discretion of the Government; it is necessary to obtain the prior permission of the Government of India before operating the provisions of this rule In case of extreme emergency or urgency; however; the Head of Missions Posts may authorise the Government servants under their control to avail of the concession subject to regularisation by Government; in due course. In any case the payment of TA will be admissible only after the Government has issued necessary sanction.

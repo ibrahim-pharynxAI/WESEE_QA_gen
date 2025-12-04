@@ -1,5 +1,0 @@
-## CONVEYANCE ALLOWANCE
-
-(Refer to Rule 222)
-
-(DELETED)

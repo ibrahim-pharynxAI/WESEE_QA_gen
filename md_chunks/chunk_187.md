@@ -1,3 +1,0 @@
-## 171. Conveyance for relatives of Civilians in case of Dangerous illness
-
-Conveyance to one relative only may be allowed when the Appointed Medical Officer considers it necessary that a civilian (other than an Officer) invalided to a peace station as a result of illness or injury contracted on field service and Iying dangerously ill in hospital should be visited by a relative. The concession should be restricted to the actual cost of conveyance (subject to the maximum entitlement to and from the station at which the individual is in hospital) the same being paid for both the outward and return journeys after the arrival of the relative at the hospital.
